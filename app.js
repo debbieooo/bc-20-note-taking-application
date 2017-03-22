@@ -19,15 +19,18 @@ var config = {
 };
 firebase.initializeApp(config);
 
+function getWords(arg,callback){
 
+	var result = arg.note_content.split('');
+	return result;
+
+}
 
 function createNote(arg,callback){
 
 	var content = arg.note_content;
+	console.log(content);
 	var messageRef = firebase.database().ref().child('notes');
-
-
-	
 
 		messageRef.push().set({
 			content :content
@@ -47,6 +50,7 @@ module.exports = {
     //deleteNote: deleteNote,
     //viewNote: viewNote,
     createNote: createNote
+    
 
 }
 
