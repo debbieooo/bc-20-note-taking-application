@@ -19,6 +19,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var messageRef = firebase.database().ref().child('notes');
+
+
 function getWords(arg,callback){
 
 	var result = arg.note_content.split('');
@@ -30,7 +33,6 @@ function createNote(arg,callback){
 
 	var content = arg.note_content;
 	console.log(content);
-	var messageRef = firebase.database().ref().child('notes');
 
 		messageRef.push().set({
 			content :content
@@ -39,6 +41,13 @@ function createNote(arg,callback){
 		console.log('Note created');
 		callback();
 	
+
+}
+
+function viewNote(arg){
+	var messag
+
+
 
 }
 
