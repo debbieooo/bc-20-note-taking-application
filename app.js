@@ -44,8 +44,30 @@ function createNote(arg,callback){
 
 }
 
-function viewNote(arg){
-	var messag
+function viewNote(arg, callback){
+
+  var id = arg.id;
+  messageRef.once("value", function(snapshot){
+
+      var i = 1;
+      var arr = [""];
+    snapshot.forEach(function(childSnapshot){
+      arr.push(childSnapshot.val().content);
+
+    });
+
+    if(arr[id]){
+
+      console.log(arr[id]);
+      
+      callback();
+    }else {
+      
+      console.log(" "+"Not a valid key");
+      callback();
+      
+    }
+  });
 
 
 
@@ -57,7 +79,7 @@ module.exports = {
     //searchNote: searchNote,
     //listNotes: listNotes,
     //deleteNote: deleteNote,
-    //viewNote: viewNote,
+    viewNote: viewNote,
     createNote: createNote
     
 
