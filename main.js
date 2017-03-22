@@ -12,7 +12,7 @@ vorpal
 
 
 vorpal
-	.command('viewnote ,<id>')
+	.command('viewnote <id>')
 	.description('To view already stored notes')
 	.action(function(arguments,callback){
 		app.viewNote(arguments,callback);
@@ -20,7 +20,7 @@ vorpal
 
 
 vorpal
-	.command('deletenote ,<id>')
+	.command('deletenote <id>')
 	.description('Deletes already stored notes')
 	.action(function(arguments,callback){
 		app.deleteNote(arguments,callback);
