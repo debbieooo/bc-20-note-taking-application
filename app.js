@@ -69,8 +69,24 @@ function viewNote(arg, callback){
     }
   });
 
+}
 
+function deleteNote(arg,callback){
 
+	var id = arg.id;
+	messageRef.once("value", function(snapshot){
+
+		var i=1;
+		
+		snapshot.forEach(function(childSnapshot){
+			//console.log(i);
+			if(i == id){
+				childSnapshot.ref.remove();
+				callback();
+			}
+			i++;
+		});
+	});
 }
 
 
@@ -78,7 +94,7 @@ module.exports = {
 
     //searchNote: searchNote,
     //listNotes: listNotes,
-    //deleteNote: deleteNote,
+    deleteNote: deleteNote,
     viewNote: viewNote,
     createNote: createNote
     
