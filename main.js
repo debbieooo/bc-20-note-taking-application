@@ -8,9 +8,6 @@ var readlineSync = require('readline-sync');
 
 var content= readlineSync.question("Hey there! What's your name?");
 
-
-
-
 figlet('Hi, '+ content, function(err,data){
 	if(err){
 		console.log('Something went wrong..');
@@ -20,6 +17,7 @@ figlet('Hi, '+ content, function(err,data){
 	console.log(data)
 
 });
+
 console.log("Please enter help to view the options available");
 
 
@@ -50,7 +48,7 @@ vorpal
 vorpal
   .command('searchnotes <query_string>')
   .description('It searches a note for a query string')
-  .option('-l, --limit <number>', 'limit the search to some notes')
+  .option('--l, --limit <number>', 'limit the search to some notes')
   .action(function(arguments, callback) {
     app.searchNote(arguments, callback);
 });

@@ -23,7 +23,7 @@ var messageRef = firebase.database().ref().child('notes');
 
 function createNote(arg,callback){
 
-	var content= readlineSync.question('Please enter your content');
+	var content= readlineSync.question('Please enter your content:: ');
 
 
 	//var content = arg.note_content;
@@ -75,7 +75,7 @@ function deleteNote(arg,callback){
 		var i=1;
 		
 		snapshot.forEach(function(childSnapshot){
-			//console.log(i);
+			
 			if(i == id){
 
 				console.log("Note: "+ childSnapshot.val().content);
@@ -106,6 +106,15 @@ function deleteNote(arg,callback){
 
 function listNotes(arg,callback){
 	var id =1;
+
+	if(id>arg.options.limit){
+
+		console.log("Invalid limit, the note's full list will be displayed for you.");
+
+		callback();
+
+
+	}
 
 	if(!arg.options.limit){
 
@@ -154,6 +163,7 @@ function listNotes(arg,callback){
 
 function searchNote(arg, callback){
 
+	var i=1;
 	//var limit = parseInt(arg.options.limit);
 	var search = arg.query_string;	
 
@@ -163,10 +173,12 @@ function searchNote(arg, callback){
 
 			snapshot.forEach(function(childSnapshot){
 				
-      			if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
-					console.log(childSnapshot.val().content );
+      			if (childSnapshot.val().content.indexOf(arg.query_string) >-1) {
+      				//console.log('Note found');
+					console.log(i+" "+ childSnapshot.val().content );
 					callback();
 				}
+				i++;
 			});
 		});
 		callback();
@@ -178,12 +190,13 @@ function searchNote(arg, callback){
 			
 			snapshot.forEach(function(childSnapshot){
 				
-      			if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
-					console.log("Note found :"+ childSnapshot.val().content );
+      			if (childSnapshot.val().content.indexOf(arg.query_string) > -1) {
+      				//console.log('Note found');
+					console.log(i+" "+ childSnapshot.val().content );
 					callback();
 				}
 
-				
+				i++;
 			});
 
 		});
