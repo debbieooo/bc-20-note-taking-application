@@ -2,12 +2,8 @@
 //var prompt = require('readline');
 var firebase= require('firebase');
 var readlineSync = require('readline-sync');
+var jsonfile = require('jsonfile');
 
-
-/*const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});*/
 
 
 var config = {
@@ -21,13 +17,6 @@ firebase.initializeApp(config);
 
 var messageRef = firebase.database().ref().child('notes');
 
-
-/*function getWords(arg,callback){
-
-	var result = arg.note_content.split('');
-	return result;
-
-}*/
 
 function createNote(arg,callback){
 
@@ -82,6 +71,7 @@ function deleteNote(arg,callback){
 			//console.log(i);
 			if(i == id){
 				childSnapshot.ref.remove();
+				console.log("Note deleted");
 				callback();
 			}
 			i++;
@@ -134,28 +124,21 @@ function listNotes(arg,callback){
 
 		callback();
 
-	}
-
-	
-	
-
-	
+	}		
 }
 
 function searchNote(arg, callback){
 
 	//var limit = parseInt(arg.options.limit);
-	var search = arg.query_string;
-
-	
+	var search = arg.query_string;	
 
 	if(!isNaN(arg.options.limit)){
 
-		messageRef.orderByKey().limitToLast(arg.options.limit).once('value',function(snapshot){
+		messageRef.limitToFirst(arg.options.limit).once('value',function(snapshot){
 
 			snapshot.forEach(function(childSnapshot){
-				//console.log(i);
-      	if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
+				
+      			if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
 					console.log(childSnapshot.val().content );
 					callback();
 				}
@@ -169,8 +152,8 @@ function searchNote(arg, callback){
 		messageRef.once("value", function(snapshot){
 			
 			snapshot.forEach(function(childSnapshot){
-				//console.log(i);
-      	if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
+				
+      			if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
 					console.log("Note found :"+ childSnapshot.val().content );
 					callback();
 				}
@@ -178,13 +161,37 @@ function searchNote(arg, callback){
 				
 			});
 
-			/*if(childSnapshot.val().content !==search){
-					console.log("Note not found, view available notes and try again");
-			}*/
 		});
 		callback();
 	}
 
+
+}
+
+function jsonExport(callback){
+ 	
+	messageRef.once("value", function(snapshot){
+
+		var file = snapshot.val();
+
+		var filename = "/Users/deborahoni/Desktop/Notes.json";
+		//console.log(file);
+	
+
+		jsonfile.writeFile(filename,file,(err) => {
+		
+			if(!err){
+				console.log("Export complete");
+			}
+			else{
+				console.log("An error occurred");
+			}
+		})
+
+	});
+
+	callback();
+	
 
 }
 
@@ -195,7 +202,8 @@ module.exports = {
     listNotes: listNotes,
     deleteNote: deleteNote,
     viewNote: viewNote,
-    createNote: createNote
+    createNote: createNote,
+    jsonExport: jsonExport
     
 
 }
