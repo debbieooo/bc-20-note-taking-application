@@ -69,6 +69,7 @@ function viewNote(arg, callback){
 function deleteNote(arg,callback){
 
 	var id = arg.id;
+	
 	messageRef.once("value", function(snapshot){
 
 		var i=1;
@@ -76,6 +77,8 @@ function deleteNote(arg,callback){
 		snapshot.forEach(function(childSnapshot){
 			//console.log(i);
 			if(i == id){
+
+				console.log("Note: "+ childSnapshot.val().content);
 				childSnapshot.ref.remove();
 				console.log("Note deleted");
 				callback();
@@ -83,10 +86,23 @@ function deleteNote(arg,callback){
 			i++;
 		});
 
+			if(id>=i){
 
+				console.log("Note index is not available. Viewing the note list first might help you confirm the right index");
+			}
+
+
+			else if(id<1){
+				console.log("Note index is not available. It should be greater than 0");
+			}
+
+		
 	});
+
+	
 	callback();
 }
+
 
 function listNotes(arg,callback){
 	var id =1;
