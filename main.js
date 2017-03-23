@@ -2,8 +2,26 @@ var firebase= require('firebase');
 const vorpal= require('vorpal')();
 var app = require('./app.js');
 var figlet = require('figlet');
+var readlineSync = require('readline-sync');
 
+
+
+var content= readlineSync.question("Hey there! What's your name?");
+
+
+
+
+figlet('Hi, '+ content, function(err,data){
+	if(err){
+		console.log('Something went wrong..');
+		return;
+	}
+
+	console.log(data)
+
+});
 console.log("Please enter help to view the options available");
+
 
 
 vorpal

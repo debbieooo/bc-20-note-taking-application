@@ -82,7 +82,10 @@ function deleteNote(arg,callback){
 			}
 			i++;
 		});
+
+
 	});
+	callback();
 }
 
 function listNotes(arg,callback){
