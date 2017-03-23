@@ -27,20 +27,21 @@ vorpal
 });
 
 vorpal
-	.command('searchnotes <query_string>')
-	.description('Search through the notes using a query string')
-	.option('--limit','limit your search to the specif number you want')
-	.action(function(arguments,callback){
-		app.searchNotes(arguments,callback);
-});
+  .command('searchnotes <query_string>')
+  .description('It searches a note for a query string')
+  .option('-l, --limit <number>', 'limit the search to some notes')
+  .action(function(arguments, callback) {
+    app.searchNote(arguments, callback);
+  });
+
 
 vorpal
-	.command('listnotes')
-	.description('')
-	.option('--limit','limit your search to the specif number you want')
-	.action(function(arguments,callback){
-		app.listNotes(arguments,callback);
-});
+  .command('listnotes')
+  .description('use this with the --limit to return a number of note entries.')
+  .option('-l, --limit <number>', 'limit the number of notes displayed.')
+  .action(function(arguments, callback) {
+    app.listNotes(arguments, callback);
+  });
 
 vorpal
 
@@ -52,7 +53,7 @@ vorpal
 
 vorpal
 
-	.delimiter('Notes:::')
+	.delimiter('Notes==>')
 	.show();
 
 

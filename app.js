@@ -22,12 +22,12 @@ firebase.initializeApp(config);
 var messageRef = firebase.database().ref().child('notes');
 
 
-function getWords(arg,callback){
+/*function getWords(arg,callback){
 
 	var result = arg.note_content.split('');
 	return result;
 
-}
+}*/
 
 function createNote(arg,callback){
 
@@ -89,11 +89,110 @@ function deleteNote(arg,callback){
 	});
 }
 
+function listNotes(arg,callback){
+	var id =1;
+
+	if(!arg.options.limit){
+
+		messageRef.once('value',function(snapshot){
+
+			snapshot.forEach(function(childSnapshot){
+				var child = childSnapshot.val();
+				console.log("");
+				console.log("   "+id+" "+child.content);
+				id++;
+			});
+
+			callback();
+
+		});
+
+	}
+
+	else if(!isNaN(arg.options.limit)){
+
+		messageRef.limitToFirst(arg.options.limit).once('value', function(snapshot) {
+
+			snapshot.forEach(function(childSnapshot){
+				var child = childSnapshot.val();
+				console.log("");
+
+				console.log("   "+id+" "+child.content);
+				id++;
+			});
+
+			callback();
+
+		});
+
+	}
+
+
+	else{
+
+		console.log('Wrong query input, please try again');
+
+		callback();
+
+	}
+
+	
+	
+
+	
+}
+
+function searchNote(arg, callback){
+
+	//var limit = parseInt(arg.options.limit);
+	var search = arg.query_string;
+
+	
+
+	if(!isNaN(arg.options.limit)){
+
+		messageRef.orderByKey().limitToLast(arg.options.limit).once('value',function(snapshot){
+
+			snapshot.forEach(function(childSnapshot){
+				//console.log(i);
+      	if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
+					console.log(childSnapshot.val().content );
+					callback();
+				}
+			});
+		});
+		callback();
+	}
+
+	else if(!arg.options.limit){
+
+		messageRef.once("value", function(snapshot){
+			
+			snapshot.forEach(function(childSnapshot){
+				//console.log(i);
+      	if (childSnapshot.val().content.indexOf(arg.query_string) !== -1) {
+					console.log("Note found :"+ childSnapshot.val().content );
+					callback();
+				}
+
+				
+			});
+
+			/*if(childSnapshot.val().content !==search){
+					console.log("Note not found, view available notes and try again");
+			}*/
+		});
+		callback();
+	}
+
+
+}
+
 
 module.exports = {
 
-    //searchNote: searchNote,
-    //listNotes: listNotes,
+    searchNote: searchNote,
+    listNotes: listNotes,
     deleteNote: deleteNote,
     viewNote: viewNote,
     createNote: createNote
