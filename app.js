@@ -3,6 +3,9 @@
 var firebase= require('firebase');
 var readlineSync = require('readline-sync');
 var jsonfile = require('jsonfile');
+var json2csv = require('json2csv');
+var fs = require('fs');
+var readlineSync = require('readline-sync');
 
 
 
@@ -20,7 +23,10 @@ var messageRef = firebase.database().ref().child('notes');
 
 function createNote(arg,callback){
 
-	var content = arg.note_content;
+	var content= readlineSync.question('Please enter your content');
+
+
+	//var content = arg.note_content;
 	console.log(content);
 
 		messageRef.push().set({
@@ -195,6 +201,45 @@ function jsonExport(callback){
 
 }
 
+function csvExport(callback){
+ 	
+	messageRef.once("value", function(snapshot){
+
+		var file = snapshot.val();
+
+		var filename = "/Users/deborahoni/Desktop/Notes.csv";
+		console.log(file);
+
+		var fields=['snapshot.key()','content'];
+		try{
+
+			var result = json2csv({data: file ,fields : fields});
+
+			console.log(result);
+
+			fs.writeFile(filename,csv,(err) => {
+		
+				if(!err){
+					console.log("Export complete");
+				}
+				else{
+					console.log("An error occurred");
+				}
+
+			});
+		}
+
+		catch(err){
+			console.log("Could not convert to csv");
+		}
+
+	});
+
+	callback();
+	
+
+}
+
 
 module.exports = {
 
@@ -203,7 +248,8 @@ module.exports = {
     deleteNote: deleteNote,
     viewNote: viewNote,
     createNote: createNote,
-    jsonExport: jsonExport
+    jsonExport: jsonExport,
+    csvExport: csvExport
     
 
 }

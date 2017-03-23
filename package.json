@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/debbieooo/n-t-a/issues"
   },
-  "homepage": "https://github.com/debbieooo/n-t-a#readme"
+  "homepage": "https://github.com/debbieooo/n-t-a#readme",
+  "dependencies": {
+    "json2csv": "^3.7.3"
+  }
 }

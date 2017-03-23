@@ -1,10 +1,13 @@
 var firebase= require('firebase');
 const vorpal= require('vorpal')();
 var app = require('./app.js');
+var figlet = require('figlet');
+
+console.log("Please enter help to view the options available");
 
 
 vorpal
-	.command('createnote <note_content>')
+	.command('createnote')
 	.description('Saves the notes to the database')
 	.action(function(arguments,callback){
 		app.createNote(arguments,callback);
@@ -32,7 +35,7 @@ vorpal
   .option('-l, --limit <number>', 'limit the search to some notes')
   .action(function(arguments, callback) {
     app.searchNote(arguments, callback);
-  });
+});
 
 
 vorpal
@@ -41,15 +44,30 @@ vorpal
   .option('-l, --limit <number>', 'limit the number of notes displayed.')
   .action(function(arguments, callback) {
     app.listNotes(arguments, callback);
-  });
+});
 
-vorpal
+/*vorpal
 
 	.command('next')
 	.description('')
 	.action(function(arguments,callback){
 		app.next(arguments,callback);
+});*/
+
+vorpal
+  .command('Export JSON')
+  .description('Use this to export files in JSON format ')
+  .action(function(arguments, callback) {
+    app.jsonExport(callback);
 });
+
+vorpal
+  .command('Export CSV')
+  .description('Use this to export files in CSV format ')
+  .action(function(arguments, callback) {
+    app.csvExport(callback);
+});
+
 
 vorpal
 
