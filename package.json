@@ -13,7 +13,16 @@
   "author": "Deborah Oni",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/debbieooo/n-t-a/issues"
+    "url": "https://github.com/debbieooo/bc-20-note-taking-application/issues"
   },
-  "homepage": "https://github.com/debbieooo/n-t-a#readme"
+  "homepage": "https://github.com/debbieooo/bc-20-note-taking-application#readme",
+  "dependencies": {
+    "figlet": "^1.2.0",
+    "firebase": "^3.7.3",
+    "jsonfile": "^2.4.0",
+    "vorpal": "^1.11.4",
+    "readline-sync": "^1.4.7"
+  }
+
 }
+
