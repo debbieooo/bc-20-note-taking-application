@@ -61,7 +61,6 @@ vorpal
     app.jsonExport(callback);
 });
 vorpal
-
 	.delimiter('Notes==>')
 	.show();
 
