@@ -1,8 +1,12 @@
 var firebase= require('firebase');
 var readlineSync = require('readline-sync');
 var jsonfile = require('jsonfile');
+var json2csv = require('json2csv');
 var fs = require('fs');
 var readlineSync = require('readline-sync');
+
+
+
 var config = {
     apiKey: "AIzaSyCXblpDaPjl4y4GM-e4McTdgb_IX8oIokY",
     authDomain: "projectx-8d97e.firebaseapp.com",
@@ -147,6 +151,7 @@ function searchNote(arg, callback){
 
 	else if(!arg.options.limit){
 		getNote(search);
+<<<<<<< HEAD
 		callback();
 	}
 
@@ -155,6 +160,16 @@ function searchNote(arg, callback){
 		console.log("Wrong input");
 		callback();
 	}
+=======
+		callback();
+	}
+
+	else{
+
+		console.log("Wrong input");
+		callback();
+	}
+>>>>>>> d735c5a1f3a65c0a151b9d6be7e0c4e2f329761a
 }
 
 function getNote(arg) {
@@ -209,4 +224,8 @@ module.exports = {
     viewNote: viewNote,
     createNote: createNote,
     jsonExport: jsonExport
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d735c5a1f3a65c0a151b9d6be7e0c4e2f329761a
