@@ -1,8 +1,5 @@
 # bc-20-note-taking-application
 
-
-<snippet>
-  <content><![CDATA[
 # ${1:Note taking application}
 ##Introduction
 *Note application that has the following features
@@ -20,14 +17,11 @@
 *[**Jsonfile**][https://www.npmjs.com/package/jsonfile]-Easily read/write JSON files
 
 ## Installation
-1.Clone the repository in directory Using SSH;
- ```https://github.com/debbieooo/bc-20-note-taking-application.git```
+*Clone the repository in directory Using SSH:https://github.com/debbieooo/bc-20-note-taking-application.git
 
 ## Usage
-1. Install dependencies by running ```npm install```
-2. Run the application on your command line with ```node main.js```
-3. Use the help function to view the features available
+* Install dependencies by running ```npm install```
+* Run the application on your command line with ```node main.js```
+* Use the help function to view the features available
 
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
+]
