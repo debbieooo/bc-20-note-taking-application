@@ -1,5 +1,5 @@
 
-##Note taking console application
+## Note taking application
 
 Note application that has the following features
 *Create note feature that accepts notes from the user and stores it on the database 
