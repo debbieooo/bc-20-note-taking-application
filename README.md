@@ -1,6 +1,5 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Note taking console application}
+
+##Note taking console application
 
 Note application that has the following features
 *Create note feature that accepts notes from the user and stores it on the database 
@@ -24,7 +23,3 @@ Note application that has the following features
 *[**Figlet**](https://www.npmjs.com/package/figlet)-This project aims to fully implement the FIGfont spec in JavaScript. It works in the browser and with Node.js
 *[**Jsonfile**](https://www.npmjs.com/package/jsonfile)-Easily read/write JSON files
 
-
-]]></content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
