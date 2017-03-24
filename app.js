@@ -1,12 +1,8 @@
 var firebase= require('firebase');
 var readlineSync = require('readline-sync');
 var jsonfile = require('jsonfile');
-var json2csv = require('json2csv');
 var fs = require('fs');
 var readlineSync = require('readline-sync');
-
-
-
 var config = {
     apiKey: "AIzaSyCXblpDaPjl4y4GM-e4McTdgb_IX8oIokY",
     authDomain: "projectx-8d97e.firebaseapp.com",
