@@ -50,7 +50,7 @@ vorpal
 vorpal
   .command('listnotes')
   .description('use this with the --limit to return a number of note entries.')
-  .option('-l, --limit <number>', 'limit the number of notes displayed.')
+  .option('--l, --limit <number>', 'limit the number of notes displayed.')
   .action(function(arguments, callback) {
     app.listNotes(arguments, callback);
 });
