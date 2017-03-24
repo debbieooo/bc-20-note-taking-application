@@ -3,25 +3,25 @@ const vorpal= require('vorpal')();
 var app = require('./app.js');
 var figlet = require('figlet');
 var readlineSync = require('readline-sync');
-var content= readlineSync.question("Hey there! What's your name?   ");
-while(!isValidText(content)){
-	var content= readlineSync.question("Please try again. This is not a valid name. What's your name?  ");
+var content= readlineSync.question("Hey there! What's your name?");
+while (!isValidText(content)) {
+	var content= readlineSync.question("Please try again. This is not a valid name. What's your name?");
 }
 
-	figlet('Hi, '+ content, function(err,data){
-	if(err){
-		console.log('Something went wrong..');
-		return;
-	}
-	console.log(data)
+	figlet('Hi, '+ content, function(err,data) {
+		if (err) {
+			console.log('Something went wrong..');
+			return;
+		}
+		console.log(data)
 	});
 
-function isValidText(content){
+function isValidText(content) {
 	var regex = /^[a-zA-Z][a-zA-Z\s]*$/;
 	return regex.test(content);
 }
 
-console.log("     Please enter help to view the options available  ");
+console.log("Please enter help to view the options available");
 vorpal
 	.command('createnote')
 	.description('Saves the notes to the database')
@@ -50,7 +50,7 @@ vorpal
 vorpal
   .command('listnotes')
   .description('use this with the --limit to return a number of note entries.')
-  .option('-l, --limit <number>', 'limit the number of notes displayed.')
+  .option('--l, --limit <number>', 'limit the number of notes displayed.')
   .action(function(arguments, callback) {
     app.listNotes(arguments, callback);
 });
@@ -60,7 +60,6 @@ vorpal
   .action(function(arguments, callback) {
     app.jsonExport(callback);
 });
-
 vorpal
 
 	.delimiter('Notes==>')
