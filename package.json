@@ -1,0 +1,28 @@
+{
+  "name": "n-t-a",
+  "version": "1.0.0",
+  "description": "Note taking application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/debbieooo/n-t-a.git"
+  },
+  "author": "Deborah Oni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/debbieooo/bc-20-note-taking-application/issues"
+  },
+  "homepage": "https://github.com/debbieooo/bc-20-note-taking-application#readme",
+  "dependencies": {
+    "figlet": "^1.2.0",
+    "firebase": "^3.7.3",
+    "jsonfile": "^2.4.0",
+    "vorpal": "^1.11.4",
+    "readline-sync": "^1.4.7"
+  }
+
+}
+
